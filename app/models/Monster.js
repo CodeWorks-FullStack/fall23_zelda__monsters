@@ -2,10 +2,12 @@ export class Monster {
   constructor (data) {
     this.id = data.id
     this.name = data.name
+    // NOTE if we dont like the naming conventions used by the API, we can change this on our class
+    this.imgUrl = data.image
+    // NOTE the API supplied null values for a few of our objects, so the "||" allows us to to default any falsy values to an empty array 
     this.locations = data.common_locations || []
     this.description = data.description
     this.drops = data.drops || []
-    this.imgUrl = data.image
   }
 
   get MonsterCardTemplate() {
@@ -34,7 +36,6 @@ export class Monster {
     `
   }
 
-
   get LocationListItems() {
     let content = ''
     this.locations.forEach(location => content += `<li>${location}</li>`)
@@ -48,7 +49,7 @@ export class Monster {
 
 }
 
-
+// NOTE this is what our data looked like in our console, and we now build our Class Models to fit this data
 const monsterData = {
   "category": "monsters",
   "common_locations": [
